@@ -1,0 +1,33 @@
+#-------------Setup----------------
+
+import Ed
+
+# Nastavení robota
+Ed.EdisonVersion = Ed.V3
+Ed.DistanceUnits = Ed.CM
+Ed.Tempo = Ed.TEMPO_MEDIUM
+
+#--------Your code below-----------
+def navigate_maze():
+    while True:  # Nekonecna smycka
+        # logika kodu 
+        if Ed.LightSensor(Ed.LEFT) == Ed.DARK and Ed.LightSensor(Ed.RIGHT) == Ed.DARK:
+            # Pokud na levé a pravé straně je stěna, pokračuj vpřed
+            Ed.Drive(Ed.FORWARD, Ed.SPEED_10, Ed.DISTANCE_UNLIMITED)
+        
+        elif Ed.LightSensor(Ed.RIGHT) == Ed.LIGHT:  
+            # if right side no wall turn right
+            Ed.Drive(Ed.RIGHT, Ed.SPEED_10, Ed.DISTANCE_10)
+            Ed.Drive(Ed.FORWARD, Ed.SPEED_10, Ed.DISTANCE_UNLIMITED)
+        
+        elif Ed.LightSensor(Ed.LEFT) == Ed.LIGHT:
+            #   if left side no wall turn left
+            Ed.Drive(Ed.LEFT, Ed.SPEED_10, Ed.DISTANCE_10)
+            Ed.Drive(Ed.FORWARD, Ed.SPEED_10, Ed.DISTANCE_UNLIMITED)
+        
+        else:
+            # no wall = forward
+            Ed.Drive(Ed.FORWARD, Ed.SPEED_10, Ed.DISTANCE_UNLIMITED)
+
+
+
